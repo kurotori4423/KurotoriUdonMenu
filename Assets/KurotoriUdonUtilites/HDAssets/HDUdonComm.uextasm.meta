@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c3816e2d831dbcd4bb995c0b31d8c902
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: Imported External Udon Assembly Program
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: aef2471a1b74924419259891c5478b53, type: 3}

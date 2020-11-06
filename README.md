@@ -21,7 +21,6 @@ VRモードなら両手のコントローラーの人差し指トリガーを引
 1. 最新の`VRCSDK3-Worlds`をインポートします。
 2. 最新の[UdonSharp](https://github.com/MerlinVR/UdonSharp/releases/latest)をインポートします。
 3. `UdonMenu`プレハブをドラッグアンドドロップでシーンに追加します。
-4. UdonMenu以下のHDUdonCommの`Udon Behaviour`から`Compile Program`を選択してください。
 
 
 ### スペシャルサンクス
@@ -32,5 +31,8 @@ VRモードなら両手のコントローラーの人差し指トリガーを引
 ### 連絡先
 
 不具合報告などはTwitter又はDiscordまでご連絡ください。
+
+Twitter: [@kurotori4423](https://twitter.com/kurotori4423)  
+Discord: kurotori4423#1330
 
 

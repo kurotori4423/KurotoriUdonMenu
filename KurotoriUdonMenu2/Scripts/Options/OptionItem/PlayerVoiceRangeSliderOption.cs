@@ -6,33 +6,34 @@ using UnityEngine;
 
 using UnityEditor;
 using UdonSharpEditor;
-
-[System.Serializable]
-public class PlayerVoiceRangeSliderOption : IOptionItem
+namespace Kurotori.UdonMenu
 {
-    public float minVocieRange;
-    public float maxVoiceRange;
-    public float initRange;
-
-    public void CreateOption(OptionsSettings settings)
+    [System.Serializable]
+    public class PlayerVoiceRangeSliderOption : IOptionItem
     {
-        var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/PlayerVoiceRangeSlider.prefab";
+        public float minVocieRange;
+        public float maxVoiceRange;
+        public float initRange;
 
-        var prefab = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
+        public void CreateOption(OptionsSettings settings)
+        {
+            var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/PlayerVoiceRangeSlider.prefab";
 
-        var gameObject = settings.InstantiateObject(prefab, settings.menuParent);
-        gameObject.name = "PlayerVoiceRangeSlider";
+            var prefab = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
 
-        var udon = gameObject.GetUdonSharpComponent<UdonMenuPlayerVoiceRangeSlider>();
+            var gameObject = settings.InstantiateObject(prefab, settings.menuParent);
+            gameObject.name = "PlayerVoiceRangeSlider";
 
-        udon.UpdateProxy();
+            var udon = gameObject.GetUdonSharpComponent<UdonMenuPlayerVoiceRangeSlider>();
 
-        udon.minVoiceRange = minVocieRange;
-        udon.maxVoiceRange = maxVoiceRange;
-        udon.initRange = initRange;
+            udon.UpdateProxy();
 
-        udon.ApplyProxyModifications();
+            udon.minVoiceRange = minVocieRange;
+            udon.maxVoiceRange = maxVoiceRange;
+            udon.initRange = initRange;
+
+            udon.ApplyProxyModifications();
+        }
     }
 }
-
 #endif

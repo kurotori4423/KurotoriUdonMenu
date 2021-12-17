@@ -12,69 +12,72 @@ using VRC.SDKBase;
 using VRC.Udon;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class LanguageOption : IOptionItem
+namespace Kurotori.UdonMenu
 {
-    [SerializeField] UdonBehaviour languageSwitcher;
-
-    public void CreateOption(OptionsSettings settings)
+    [System.Serializable]
+    public class LanguageOption : IOptionItem
     {
-        var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/LanguageOption.prefab";
+        [SerializeField] UdonBehaviour languageSwitcher;
 
-        var prefab = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
-
-        var gameObject = settings.InstantiateObject(prefab, settings.menuParent);
-        gameObject.name = "LanguageOption";
-
-        var toggles = gameObject.GetComponentsInChildren<Toggle>();
-        var jpToggleObj = toggles.Where(e => e.gameObject.name.Equals("Japanese")).First();
-        var enToggleObj = toggles.Where(e => e.gameObject.name.Equals("English")).First();
-
-        var switcher = languageSwitcher.GetUdonSharpComponent<Kurotori.UdonMenuLanguageSwitcher>();
-
-        switcher.UpdateProxy();
-        switcher.enToggle = enToggleObj;
-        switcher.jpToggle = jpToggleObj;
-        switcher.ApplyProxyModifications();
-
-        EditorUtility.SetDirty(languageSwitcher);
-
-        // toggleにUdonをセットする
-        using (var toggleSo = new SerializedObject(jpToggleObj))
+        public void CreateOption(OptionsSettings settings)
         {
-            using (var callProperty = toggleSo.FindProperty("onValueChanged.m_PersistentCalls.m_Calls"))
+            var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/LanguageOption.prefab";
+
+            var prefab = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
+
+            var gameObject = settings.InstantiateObject(prefab, settings.menuParent);
+            gameObject.name = "LanguageOption";
+
+            var toggles = gameObject.GetComponentsInChildren<Toggle>();
+            var jpToggleObj = toggles.Where(e => e.gameObject.name.Equals("Japanese")).First();
+            var enToggleObj = toggles.Where(e => e.gameObject.name.Equals("English")).First();
+
+            var switcher = languageSwitcher.GetUdonSharpComponent<UdonMenuLanguageSwitcher>();
+
+            switcher.UpdateProxy();
+            switcher.enToggle = enToggleObj;
+            switcher.jpToggle = jpToggleObj;
+            switcher.ApplyProxyModifications();
+
+            EditorUtility.SetDirty(languageSwitcher);
+
+            // toggleにUdonをセットする
+            using (var toggleSo = new SerializedObject(jpToggleObj))
             {
-                callProperty.arraySize = 0;
-                callProperty.arraySize = 1;
-                using (var element = callProperty.GetArrayElementAtIndex(0))
+                using (var callProperty = toggleSo.FindProperty("onValueChanged.m_PersistentCalls.m_Calls"))
                 {
-                    element.FindPropertyRelative("m_Target").objectReferenceValue = languageSwitcher;
-                    element.FindPropertyRelative("m_MethodName").stringValue = "SendCustomEvent";
-                    element.FindPropertyRelative("m_Mode").enumValueIndex = (int)PersistentListenerMode.String;
-                    element.FindPropertyRelative("m_Arguments.m_StringArgument").stringValue = "ChangeJP";
-                    element.FindPropertyRelative("m_CallState").enumValueIndex = (int)UnityEventCallState.RuntimeOnly;
+                    callProperty.arraySize = 0;
+                    callProperty.arraySize = 1;
+                    using (var element = callProperty.GetArrayElementAtIndex(0))
+                    {
+                        element.FindPropertyRelative("m_Target").objectReferenceValue = languageSwitcher;
+                        element.FindPropertyRelative("m_MethodName").stringValue = "SendCustomEvent";
+                        element.FindPropertyRelative("m_Mode").enumValueIndex = (int)PersistentListenerMode.String;
+                        element.FindPropertyRelative("m_Arguments.m_StringArgument").stringValue = "ChangeJP";
+                        element.FindPropertyRelative("m_CallState").enumValueIndex = (int)UnityEventCallState.RuntimeOnly;
+                    }
                 }
+
+                toggleSo.ApplyModifiedProperties();
             }
 
-            toggleSo.ApplyModifiedProperties();
-        }
-
-        using (var toggleSo = new SerializedObject(enToggleObj))
-        {
-            using (var callProperty = toggleSo.FindProperty("onValueChanged.m_PersistentCalls.m_Calls"))
+            using (var toggleSo = new SerializedObject(enToggleObj))
             {
-                callProperty.arraySize = 0;
-                callProperty.arraySize = 1;
-                using (var element = callProperty.GetArrayElementAtIndex(0))
+                using (var callProperty = toggleSo.FindProperty("onValueChanged.m_PersistentCalls.m_Calls"))
                 {
-                    element.FindPropertyRelative("m_Target").objectReferenceValue = languageSwitcher;
-                    element.FindPropertyRelative("m_MethodName").stringValue = "SendCustomEvent";
-                    element.FindPropertyRelative("m_Mode").enumValueIndex = (int)PersistentListenerMode.String;
-                    element.FindPropertyRelative("m_Arguments.m_StringArgument").stringValue = "ChangeEN";
-                    element.FindPropertyRelative("m_CallState").enumValueIndex = (int)UnityEventCallState.RuntimeOnly;
+                    callProperty.arraySize = 0;
+                    callProperty.arraySize = 1;
+                    using (var element = callProperty.GetArrayElementAtIndex(0))
+                    {
+                        element.FindPropertyRelative("m_Target").objectReferenceValue = languageSwitcher;
+                        element.FindPropertyRelative("m_MethodName").stringValue = "SendCustomEvent";
+                        element.FindPropertyRelative("m_Mode").enumValueIndex = (int)PersistentListenerMode.String;
+                        element.FindPropertyRelative("m_Arguments.m_StringArgument").stringValue = "ChangeEN";
+                        element.FindPropertyRelative("m_CallState").enumValueIndex = (int)UnityEventCallState.RuntimeOnly;
+                    }
                 }
+                toggleSo.ApplyModifiedProperties();
             }
-            toggleSo.ApplyModifiedProperties();
         }
     }
 }

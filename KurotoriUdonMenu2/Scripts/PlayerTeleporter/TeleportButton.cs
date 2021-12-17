@@ -6,7 +6,7 @@ using VRC.Udon;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Kurotori
+namespace Kurotori.UdonMenu
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class TeleportButton : UdonSharpBehaviour

@@ -5,7 +5,7 @@ using VRC.SDKBase;
 using VRC.Udon;
 using UnityEngine.UI;
 
-namespace Kurotori
+namespace Kurotori.UdonMenu
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class UdonMenu : UdonSharpBehaviour
@@ -24,7 +24,7 @@ namespace Kurotori
         [SerializeField] float menuPopTime = 2.0f;
 
         int activeMenuItem = 0;
-        Kurotori.MenuActivater[] activaters;
+        MenuActivater[] activaters;
 
         float menuPopTimer = 0.0f;
 
@@ -32,7 +32,7 @@ namespace Kurotori
         {
             var itemNum = menuItems.Length;
 
-            activaters = new Kurotori.MenuActivater[itemNum];
+            activaters = new MenuActivater[itemNum];
 
             for(int i = 0; i < itemNum;++i)
             {
@@ -45,7 +45,7 @@ namespace Kurotori
 
                 tb.SetActive(true);
 
-                var activater = tb.GetComponent<Kurotori.MenuActivater>();
+                var activater = tb.GetComponent<MenuActivater>();
                 
                 activaters[i] = activater;
 

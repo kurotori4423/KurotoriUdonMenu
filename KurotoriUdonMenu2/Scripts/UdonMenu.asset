@@ -560,7 +560,7 @@ MonoBehaviour:
       Data: 40|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Kurotori.MenuActivater[], Assembly-CSharp
+      Data: Kurotori.UdonMenu.MenuActivater[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

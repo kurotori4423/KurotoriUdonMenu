@@ -4,10 +4,13 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class UdonMenuAnimatorBoolToggle : UdonSharpBehaviour
+namespace Kurotori.UdonMenu
 {
-    void Start()
+    public class UdonMenuAnimatorBoolToggle : UdonSharpBehaviour
     {
-        
+        void Start()
+        {
+
+        }
     }
 }

@@ -6,12 +6,12 @@ using VRC.Udon;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Kurotori
+namespace Kurotori.UdonMenu
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class MenuActivater : UdonSharpBehaviour
     {
-        public Kurotori.UdonMenu udonMenu;
+        public UdonMenu udonMenu;
         public int menuId;
 
         [SerializeField] TextMeshProUGUI label;

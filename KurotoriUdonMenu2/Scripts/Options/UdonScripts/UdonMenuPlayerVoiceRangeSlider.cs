@@ -5,44 +5,47 @@ using UnityEngine.UI;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class UdonMenuPlayerVoiceRangeSlider : UdonSharpBehaviour
+namespace Kurotori.UdonMenu
 {
-    [SerializeField] Slider slider;
-    [SerializeField] public float minVoiceRange;
-    [SerializeField] public float maxVoiceRange;
-    [SerializeField] public float initRange;
-
-    void Start()
+    public class UdonMenuPlayerVoiceRangeSlider : UdonSharpBehaviour
     {
-        slider.minValue = minVoiceRange;
-        slider.maxValue = maxVoiceRange;
+        [SerializeField] Slider slider;
+        [SerializeField] public float minVoiceRange;
+        [SerializeField] public float maxVoiceRange;
+        [SerializeField] public float initRange;
 
-        slider.SetValueWithoutNotify(initRange);
-    }
-
-    public override void OnPlayerJoined(VRCPlayerApi player)
-    {
-        player.SetVoiceDistanceFar(slider.value);
-    }
-
-    public override void OnPlayerLeft(VRCPlayerApi player)
-    {
-
-    }
-
-    public void OnValueChange()
-    {
-        VRCPlayerApi[] players = new VRCPlayerApi[80];
-        VRCPlayerApi.GetPlayers(players);
-
-        foreach(var player in players)
+        void Start()
         {
-            if(Utilities.IsValid(player))
+            slider.minValue = minVoiceRange;
+            slider.maxValue = maxVoiceRange;
+
+            slider.SetValueWithoutNotify(initRange);
+        }
+
+        public override void OnPlayerJoined(VRCPlayerApi player)
+        {
+            player.SetVoiceDistanceFar(slider.value);
+        }
+
+        public override void OnPlayerLeft(VRCPlayerApi player)
+        {
+
+        }
+
+        public void OnValueChange()
+        {
+            VRCPlayerApi[] players = new VRCPlayerApi[80];
+            VRCPlayerApi.GetPlayers(players);
+
+            foreach (var player in players)
             {
-                player.SetVoiceDistanceFar(slider.value);
+                if (Utilities.IsValid(player))
+                {
+                    player.SetVoiceDistanceFar(slider.value);
+                }
             }
         }
+
+
     }
-
-
 }

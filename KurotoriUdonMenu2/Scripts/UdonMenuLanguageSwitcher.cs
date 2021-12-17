@@ -5,7 +5,7 @@ using VRC.SDKBase;
 using VRC.Udon;
 using UnityEngine.UI;
 
-namespace Kurotori
+namespace Kurotori.UdonMenu
 {
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 

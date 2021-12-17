@@ -5,22 +5,25 @@ using UnityEngine.UI;
 using VRC.SDKBase;
 using VRC.Udon;
 
-[UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
-public class UdonMenuGameObjectSwitch : UdonSharpBehaviour
+namespace Kurotori.UdonMenu
 {
-    [SerializeField] public bool isOn;
-    [SerializeField] public GameObject switchObject;
-    [SerializeField] Toggle toggle;
-
-    void Start()
+    [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
+    public class UdonMenuGameObjectSwitch : UdonSharpBehaviour
     {
-        switchObject.SetActive(isOn);
-        toggle.SetIsOnWithoutNotify(isOn);
-    }
+        [SerializeField] public bool isOn;
+        [SerializeField] public GameObject switchObject;
+        [SerializeField] Toggle toggle;
 
-    public void OnValueChanged()
-    {
-        Debug.Log("OnValueChanged");
-        switchObject.SetActive(toggle.isOn);
+        void Start()
+        {
+            switchObject.SetActive(isOn);
+            toggle.SetIsOnWithoutNotify(isOn);
+        }
+
+        public void OnValueChanged()
+        {
+            Debug.Log("OnValueChanged");
+            switchObject.SetActive(toggle.isOn);
+        }
     }
 }

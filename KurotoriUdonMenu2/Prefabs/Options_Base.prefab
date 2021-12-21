@@ -654,6 +654,11 @@ PrefabInstance:
       propertyPath: m_text
       value: Options
       objectReference: {fileID: 0}
+    - target: {fileID: 5029151660264254348, guid: 79838943de5a80241b4b3bb4e0064ae4,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8627617375225986599, guid: 79838943de5a80241b4b3bb4e0064ae4,
         type: 3}
       propertyPath: m_IsActive

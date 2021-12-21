@@ -254,8 +254,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30A6\u30A3\u30F3\u30C9\u30A6"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c0c5a0a4095e25545adbf550a9699743, type: 2}
-  m_sharedMaterial: {fileID: 21211564552315104, guid: c0c5a0a4095e25545adbf550a9699743,
+  m_fontAsset: {fileID: 11400000, guid: ee62cb1e3f974684f871c11e4f791932, type: 2}
+  m_sharedMaterial: {fileID: 21211564552315104, guid: ee62cb1e3f974684f871c11e4f791932,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -462,8 +462,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Window
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c0c5a0a4095e25545adbf550a9699743, type: 2}
-  m_sharedMaterial: {fileID: 21211564552315104, guid: c0c5a0a4095e25545adbf550a9699743,
+  m_fontAsset: {fileID: 11400000, guid: ee62cb1e3f974684f871c11e4f791932, type: 2}
+  m_sharedMaterial: {fileID: 21211564552315104, guid: ee62cb1e3f974684f871c11e4f791932,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

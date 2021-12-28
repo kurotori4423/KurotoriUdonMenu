@@ -16,6 +16,11 @@ namespace Kurotori.UdonMenu
 
         void Start()
         {
+            FirstSetup();
+        }
+
+        public void FirstSetup()
+        {
             switchObject.SetActive(isOn);
             toggle.SetIsOnWithoutNotify(isOn);
         }

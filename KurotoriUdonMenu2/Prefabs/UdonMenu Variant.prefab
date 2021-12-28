@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8066653950830009100}
     m_Modifications:
+    - target: {fileID: 5024743027031576197, guid: 58c61164d7ae71d438facc8911e822ab,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b0a602ad3df14c40ac0f299eb54d66e,
+        type: 2}
     - target: {fileID: 5917457751891849467, guid: 58c61164d7ae71d438facc8911e822ab,
         type: 3}
       propertyPath: m_IsActive
@@ -692,11 +698,6 @@ PrefabInstance:
       propertyPath: publicVariablesUnityEngineObjects.Array.data[6]
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3555153429744296141, guid: 8f9be9a099d365b4cb3122df2969fc8a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3761363532467468478, guid: 8f9be9a099d365b4cb3122df2969fc8a,
         type: 3}
       propertyPath: m_IsActive
@@ -767,11 +768,6 @@ PrefabInstance:
       propertyPath: publicVariablesUnityEngineObjects.Array.data[4]
       value: 
       objectReference: {fileID: 4821705540246478866}
-    - target: {fileID: 5232987755245536688, guid: 8f9be9a099d365b4cb3122df2969fc8a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5481023983427924957, guid: 8f9be9a099d365b4cb3122df2969fc8a,
         type: 3}
       propertyPath: serializedPublicVariablesBytesString

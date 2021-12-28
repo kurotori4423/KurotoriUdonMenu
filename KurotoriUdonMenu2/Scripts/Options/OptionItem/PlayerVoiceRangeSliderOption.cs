@@ -15,7 +15,7 @@ namespace Kurotori.UdonMenu
         public float maxVoiceRange;
         public float initRange;
 
-        public void CreateOption(OptionsSettings settings)
+        public GameObject CreateOption(OptionsSettings settings)
         {
             var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/PlayerVoiceRangeSlider.prefab";
 
@@ -33,6 +33,8 @@ namespace Kurotori.UdonMenu
             udon.initRange = initRange;
 
             udon.ApplyProxyModifications();
+
+            return gameObject;
         }
     }
 }

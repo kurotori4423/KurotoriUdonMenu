@@ -19,7 +19,7 @@ namespace Kurotori.UdonMenu
     {
         [SerializeField] UdonBehaviour languageSwitcher;
 
-        public void CreateOption(OptionsSettings settings)
+        public GameObject CreateOption(OptionsSettings settings)
         {
             var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/LanguageOption.prefab";
 
@@ -78,6 +78,8 @@ namespace Kurotori.UdonMenu
                 }
                 toggleSo.ApplyModifiedProperties();
             }
+
+            return gameObject;
         }
     }
 }

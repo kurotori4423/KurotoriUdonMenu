@@ -15,7 +15,7 @@ namespace Kurotori.UdonMenu
 
     public interface IOptionItem
     {
-        void CreateOption(OptionsSettings settings);
+        GameObject CreateOption(OptionsSettings settings);
 
     }
 
@@ -23,9 +23,10 @@ namespace Kurotori.UdonMenu
     public class GameObjectToggleOption : IOptionItem
     {
         public GameObject target;
+        [SerializeField] bool defaultOn;
         [SerializeField] string jpLabel;
         [SerializeField] string enLabel;
-        public void CreateOption(OptionsSettings settings)
+        public GameObject CreateOption(OptionsSettings settings)
         {
             Debug.Log("GameObjectOption");
 
@@ -36,7 +37,7 @@ namespace Kurotori.UdonMenu
             if (prefab == null) Debug.Log("null");
 
             var gameObject = settings.InstantiateObject(prefab, settings.menuParent);
-            gameObject.name = "Options";
+            gameObject.name = "ToggleGameObjectOption_" + target.name;
 
             var labelJP = gameObject.GetComponentsInChildren<TMPro.TextMeshProUGUI>().Where(e => e.gameObject.name.Equals("Label_JP")).First();
 
@@ -59,7 +60,10 @@ namespace Kurotori.UdonMenu
 
             udon.UpdateProxy();
             udon.switchObject = target;
+            udon.isOn = defaultOn;
             udon.ApplyProxyModifications();
+
+            return gameObject;
         }
     }
 
@@ -70,7 +74,7 @@ namespace Kurotori.UdonMenu
         [SerializeField] float initVolume;
         [SerializeField] string jpLabel;
         [SerializeField] string enLabel;
-        public void CreateOption(OptionsSettings settings)
+        public GameObject CreateOption(OptionsSettings settings)
         {
             var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/AudioVolumeSlider.prefab";
             var prefab = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
@@ -102,6 +106,8 @@ namespace Kurotori.UdonMenu
             udon.audioSource = audioSource;
             udon.initVolume = initVolume;
             udon.ApplyProxyModifications();
+
+            return gameObject;
         }
     }
 
@@ -111,7 +117,7 @@ namespace Kurotori.UdonMenu
         [SerializeField] Animator animator;
         [SerializeField] string jpLabel;
         [SerializeField] string enLabel;
-        public void CreateOption(OptionsSettings settings)
+        public GameObject CreateOption(OptionsSettings settings)
         {
             var assetPath = "Assets/KurotoriUdonMenu/KurotoriUdonMenu2/Scripts/Options/Prefabs/AnimatorSlider.prefab";
             var prefab = AssetDatabase.LoadAssetAtPath(assetPath, typeof(GameObject)) as GameObject;
@@ -144,6 +150,7 @@ namespace Kurotori.UdonMenu
             udon.initValue = 0.5f;
             udon.ApplyProxyModifications();
 
+            return gameObject;
         }
     }
 
@@ -204,14 +211,27 @@ namespace Kurotori.UdonMenu
                     DestroyImmediate(child);
                 }
 
+                var optionObjectList = new List<GameObject>();
+
                 // メニュー項目を生成する。
                 foreach (var item in settings.items)
                 {
                     if (item != null)
                     {
-                        item.CreateOption(settings);
+                        var go = item.CreateOption(settings);
+                        optionObjectList.Add(go);
                     }
                 }
+
+                var optionApplyer = settings.gameObject.GetUdonSharpComponent<UdonMenuOptionApplyer>();
+
+                optionApplyer.UpdateProxy();
+                optionApplyer.options = optionObjectList.ToArray();
+                optionApplyer.ApplyProxyModifications();
+
+                var optionApplyerUdon = UdonSharpEditorUtility.GetBackingUdonBehaviour(optionApplyer);
+
+                EditorUtility.SetDirty(optionApplyerUdon);
             }
         }
 

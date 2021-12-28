@@ -19,6 +19,11 @@ namespace Kurotori.UdonMenu
 
         void Start()
         {
+            FirstSetup();
+        }
+
+        public void FirstSetup()
+        {
             animator.speed = 0.0f;
             animator.SetFloat("blend", initValue);
             slider.SetValueWithoutNotify(initValue);

@@ -16,6 +16,11 @@ namespace Kurotori.UdonMenu
 
         void Start()
         {
+            FirstSetup();
+        }
+
+        public void FirstSetup()
+        {
             slider.minValue = minVoiceRange;
             slider.maxValue = maxVoiceRange;
 

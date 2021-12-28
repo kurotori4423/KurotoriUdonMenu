@@ -24,6 +24,11 @@ namespace Kurotori.UdonMenu
 
         void Start()
         {
+            FirstSetup();
+        }
+
+        public void FirstSetup()
+        {
             slider.SetValueWithoutNotify(initVolume);
             audioSource.volume = CalcVolume(initVolume);
         }
